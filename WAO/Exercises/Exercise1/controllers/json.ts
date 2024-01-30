@@ -1,6 +1,9 @@
 import express, { Router, Request, Response } from "express";
+import bodyParser from "body-parser";
 
 const json: Router = express.Router();
+
+json.use(bodyParser.json());
 
 json.use((req, res, next) => {
   res.setHeader("Content-Type", "application/json");
