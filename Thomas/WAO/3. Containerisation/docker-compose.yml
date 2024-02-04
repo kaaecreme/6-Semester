@@ -32,4 +32,4 @@ services:
     ports:
       - 8080:3000
     environment:  
-      - MONGO_URI=mongodb://root:example@localhost:27020
+      - MONGO_URI=mongodb://root:example@mongo:27017/

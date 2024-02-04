@@ -16,7 +16,7 @@ exports.Utils = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const promises_1 = require("fs/promises");
 const order_1 = require("../src/order");
-const connection = mongoose_1.default.createConnection("mongodb://root:example@localhost:27020");
+const connection = mongoose_1.default.createConnection(process.env.MONGO_URI);
 const OrderModel = connection.model("Order", order_1.orderSchema);
 const bootstrap = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield OrderModel.deleteMany({}).exec();

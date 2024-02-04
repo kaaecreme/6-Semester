@@ -4,9 +4,7 @@ import { readFile } from "fs/promises";
 
 import { orderSchema as orderSchema } from "../src/order";
 
-const connection = mongoose.createConnection(
-  "mongodb://admin:pass@localhost:27017"
-);
+const connection = mongoose.createConnection(process.env.MONGO_URI as string);
 const OrderModel = connection.model("Order", orderSchema);
 
 const bootstrap = async (req: Request, res: Response) => {
