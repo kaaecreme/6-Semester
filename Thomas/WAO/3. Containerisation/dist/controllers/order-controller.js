@@ -15,7 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Orders = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const order_1 = require("../src/order");
-const orderConnection = mongoose_1.default.createConnection(process.env.MONGO_URI);
+// const orderConnection = mongoose.createConnection(process.env.MONGO_URI as string);
+const orderConnection = mongoose_1.default.createConnection("mongodb://root:example@mongo:27017");
 const OrderModel = orderConnection.model("Order", order_1.orderSchema);
 // GET /orders
 // DISCLAIMER: ONLY M FILTER WORKS (SORTS BY MATERIAL)
