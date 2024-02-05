@@ -8,15 +8,15 @@ RUN npm install
 
 COPY . .
 
-RUN npm run tscone
-
-# Not needed atm i think (found in example)
-#ADD public.tar.gz .
-
 ARG PORT_ARG=8080
 ENV PORT=$PORT_ARG
 
 EXPOSE $PORT_ARG
+
+# To run the app without the bash shell (only one command can be used)
 ENTRYPOINT ["npm"]
 CMD ["start"]
+
+# To use the bash shell instead of running container
+# CMD ["bash"] 
 

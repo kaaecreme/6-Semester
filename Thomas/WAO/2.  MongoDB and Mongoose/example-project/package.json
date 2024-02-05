@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc -w",
-    "start": "nodemon dist/index.js"
+    "tsc": "tsc",
+    "tsc-watch": "tsc -w",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",

@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 
 import { orderSchema } from "../src/order";
 
-const orderConnection = mongoose.createConnection(process.env.MONGO_URI as string);
+// const orderConnection = mongoose.createConnection(process.env.MONGO_URI as string);
+const orderConnection = mongoose.createConnection(
+  "mongodb://root:example@mongo:27017"
+);
 const OrderModel = orderConnection.model("Order", orderSchema);
 
 // GET /orders

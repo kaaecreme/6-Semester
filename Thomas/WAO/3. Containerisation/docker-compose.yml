@@ -31,5 +31,5 @@ services:
     restart: always
     ports:
       - 8080:3000
-    environment:  
+    environment:
       - MONGO_URI=mongodb://root:example@mongo:27017/
