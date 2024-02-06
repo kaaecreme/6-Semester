@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 
 import { schema } from './orders'
 
-const ordersConnection = mongoose.createConnection("mongodb://root:example@localhost:27017/")
+const ordersConnection = mongoose.createConnection("mongodb://root:example@mongo:27017")
+
 const ordersModel = ordersConnection.model('Orders', schema)
 
 const create =  async (req: Request, res: Response) => {
