@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Orders = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const orders_1 = require("./orders");
-const ordersConnection = mongoose_1.default.createConnection("mongodb://root:example@localhost:27017/");
+const ordersConnection = mongoose_1.default.createConnection("mongodb://root:example@mongo:27017");
 const ordersModel = ordersConnection.model('Orders', orders_1.schema);
 const create = async (req, res) => {
     let { id } = await new ordersModel(req.body).save();

@@ -9,7 +9,7 @@ app.use(express.json());
 // Import the routes
 app.use('/orders', ordersRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

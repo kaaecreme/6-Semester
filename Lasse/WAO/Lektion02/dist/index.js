@@ -10,7 +10,7 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 // Import the routes
 app.use('/orders', orders_router_1.default);
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
