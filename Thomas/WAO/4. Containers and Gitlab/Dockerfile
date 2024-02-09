@@ -1,32 +1,35 @@
 # Stage 1: Build stage
-FROM node:16 AS build-stage
+FROM node:20 AS build-stage
 
 WORKDIR /app
  
-COPY package*.json ./
+COPY package.json .
+COPY package-lock.json .
 
 # Install dependencies
-RUN npm install --only=production
-
-# Copy the all application code
+# only install packages listed in the dependencies section of the package.json file, 
+# omitting packages listed in the devDependencies section.
+# npm ci automatically ignores devdependencies
+RUN npm ci
+ 
 COPY . .
 
-# Build TypeScript files
+# Build TypeScript files (convert to js files in dist/)
 RUN npm run build
 
+
 # Stage 2: Production stage
-FROM node:16 as production-stage
+FROM node:20-alpine as production-stage
 
 WORKDIR /app
+ 
+COPY --from=build-stage /app/dist ./
+COPY --from=build-stage /app/package*.json ./
 
-# Copy built files from the previous stage
-COPY --from=build-stage /app/dist /app/node_modules /app/package*.json ./ 
+RUN npm ci --omit=dev
 
 ARG PORT_ARG=8080
 ENV PORT=$PORT_ARG
-
 EXPOSE $PORT_ARG
-
-# To run the app without the bash shell (only one command can be used)
-ENTRYPOINT ["npm"]
-CMD ["start"] 
+  
+CMD ["node", "index.js"]
