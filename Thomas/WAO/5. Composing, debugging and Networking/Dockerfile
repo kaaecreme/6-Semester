@@ -31,5 +31,6 @@ RUN npm ci --omit=dev
 ARG PORT_ARG=8080
 ENV PORT=$PORT_ARG
 EXPOSE $PORT_ARG
-  
+
+# Removed CMD as I added entrypoint to the docker-compose file on the app service
 CMD ["node", "index.js"]
