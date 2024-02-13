@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    profiles: [development]
+
+  mongo-express:
+    image: mongo-express
+    depends_on:
+      - mongo
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+    profiles: [debug]
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    restart: always
+    ports:
+      - 8080:3000
+    environment:
+      - MONGO_URI=mongodb://root:example@mongo:27017/
+    tty: true
+    stdin_open: true
+    profiles: [debug]
+
+  npm:
+    image: node:20
+    entrypoint: npm
+    profiles:
+      - script
+    working_dir: /app
+    volumes:
+      - ./:/app
+
+  dev:
+    image: node:18
+    profiles:
+      - development
+    command: npm run dev
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - REL_URL_PATH=/
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - mongo
