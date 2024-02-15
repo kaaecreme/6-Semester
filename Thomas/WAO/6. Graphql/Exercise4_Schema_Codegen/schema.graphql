@@ -1,0 +1,52 @@
+# type Book {
+#   title: String
+#   author: String
+#   bla: Boolean
+# }
+
+# type AddBookMutationResponse {
+#   code: String!
+#   success: Boolean!
+#   message: String!
+#   book: Book
+# }
+
+# type Mutation {
+#   addBook(title: String, author: String): AddBookMutationResponse
+# }
+
+type Query {
+  materials: [Material]
+}
+
+type Mutation {
+  addMaterial(material: String, amount: [Int]): AddMaterialMutationResponse
+}
+
+type Material {
+  material: String
+  amount: [Int]
+  currency: String
+  price: Float
+  timestamp: String
+  delivery: Delivery
+}
+
+type Delivery {
+  first_name: String
+  last_name: String
+  address: Address
+}
+
+type Address {
+  street_name: String
+  street_number: String
+  city: String
+}
+
+type AddMaterialMutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  material: Material
+}
