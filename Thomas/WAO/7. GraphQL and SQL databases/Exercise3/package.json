@@ -1,0 +1,38 @@
+{
+  "name": "graphql-server-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "generate": "graphql-codegen --config codegen.yml",
+    "compile": "npm run generate && tsc",
+    "start": "npm run compile && node ./dist/index.js",
+    "codegen.watch": "graphql-codegen --config codegen.yml --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "@parcel/watcher": "^2.4.0",
+    "@prisma/client": "^5.9.1",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.4",
+    "graphql": "^16.8.1",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.4",
+    "@graphql-codegen/typescript-resolvers": "^4.0.4",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.11.18",
+    "@types/pg": "^8.11.0",
+    "@types/uuid": "^9.0.8",
+    "prisma": "^5.9.1",
+    "typescript": "^5.3.3"
+  }
+}

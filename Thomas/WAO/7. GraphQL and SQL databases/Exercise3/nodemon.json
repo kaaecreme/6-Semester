@@ -1,0 +1,8 @@
+{
+  "watch": ["src", "controllers", "resolvers"],
+  "ext": "ts",
+  "exec": "concurrently \"npx tsc --watch\" \"ts-node src/index.ts\"",
+  "execMap": {
+    "ts": "node --require ts-node/reqister"
+  }
+}
