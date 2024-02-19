@@ -1,0 +1,51 @@
+type Query {
+  login(email: String!, password: String!): LoginResponse
+  books: [Book]
+  users: [User]
+  user(token: String!): User # Define the user query with the token argument
+}
+
+type Mutation {
+  registerUser(input: RegisterUserInput!): RegisterUserMutationResponse
+  addBook(title: String, author: String): AddBookMutationResponse
+}
+
+type Book {
+  title: String
+  author: String
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  hashedPassword: String!
+  token: String!
+}
+
+type AddBookMutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  book: Book
+}
+
+type LoginResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  token: String
+}
+
+input RegisterUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+type RegisterUserMutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  user: User
+}

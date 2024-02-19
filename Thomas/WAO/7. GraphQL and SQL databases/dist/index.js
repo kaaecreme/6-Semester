@@ -1,8 +1,11 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { BooksDataSource } from "./datasources.js";
+import { BooksDataSource, UserDataSource } from "./datasources.js";
 import resolvers from "./resolvers/index.js";
 import { readFileSync } from "fs";
+import { config as dotenvConfig } from "dotenv";
+// Load environment variables from .env file
+dotenvConfig();
 // Note: this only works locally because it relies on `npm` routing
 // from the root directory of the project.
 const typeDefs = readFileSync("./schema.graphql", { encoding: "utf-8" });
@@ -13,13 +16,16 @@ const server = new ApolloServer({
     resolvers,
 });
 const { url } = await startStandaloneServer(server, {
-    context: async () => {
+    context: async ({ req }) => {
+        const token = req.headers.authorization || "";
+        const usersAPI = new UserDataSource();
+        const booksAPI = new BooksDataSource();
+        const user = await usersAPI.getUserByToken(token);
         return {
-            // We are using a static data set for this example, but normally
-            // this would be where you'd add your data source connections
-            // or your REST API classes.
+            user,
             dataSources: {
-                booksAPI: new BooksDataSource(),
+                usersAPI: usersAPI,
+                booksAPI: booksAPI,
             },
         };
     },

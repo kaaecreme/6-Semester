@@ -5,7 +5,6 @@ type Query {
 type Book {
   title: String
   author: String
-  bla: Boolean
 }
 
 type AddBookMutationResponse {
