@@ -1,7 +1,14 @@
 // Use our automatically generated Book and AddBookMutationResponse types
 // for type safety in our data source class
-import { AddBookMutationResponse, Book } from "./__generated__/resolvers-types";
-import { AddUserMutationResponse, User } from "./__generated__/resolvers-types";
+import { promises } from "dns";
+import {
+  AddBookMutationResponse,
+  Book,
+  AddUserMutationResponse,
+  User,
+  LoginResponse,
+} from "./__generated__/resolvers-types";
+import { userInfo } from "os";
 
 const BooksDB: Omit<Required<Book>, "__typename">[] = [
   {
@@ -14,7 +21,14 @@ const BooksDB: Omit<Required<Book>, "__typename">[] = [
   },
 ];
 
-const UserDB: Omit<Required<User>, "__typename">[] = [];
+const UserDB: Omit<Required<User>, "__typename">[] = [
+  {
+    id: "1",
+    username: "John Doe",
+    password: "password",
+    token: "1",
+  },
+];
 
 export class BooksDataSource {
   getBooks(): Book[] {
@@ -53,6 +67,7 @@ export class UsersDataSource {
         id: user.id,
         username: user.username,
         password: user.password,
+        token: user.token,
       });
 
       return {
@@ -69,5 +84,20 @@ export class UsersDataSource {
         user: null,
       };
     }
+  }
+
+  async login(username: string, password: string): Promise<LoginResponse> {
+    const user = UserDB.find((user) => user.username === username);
+    if (!user) {
+      return {
+        code: "400",
+        success: false,
+        message: "User not found",
+      };
+    }
+  }
+
+  generateUserByToken(token: String): User | undefined {
+    return UserDB.find((user) => user.token === token);
   }
 }
