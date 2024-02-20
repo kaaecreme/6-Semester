@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid"; // Import UUID generator
-import { generateToken, hashPassword } from "./authutils.js";
+import { generateToken, hashPassword, verifyToken } from "./authutils.js";
 import { GraphQLError } from "graphql";
 const mutations = {
     addBook: async (_, { title, author }, { dataSources, user }) => {
-        if (!user)
-            throw new GraphQLError("You must be logged in to query this schema", {
+        if (!verifyToken(user.token))
+            throw new GraphQLError("You must be logged in to query this schema / Invalid token", {
                 extensions: {
                     code: "UNAUTHENTICATED",
                 },
