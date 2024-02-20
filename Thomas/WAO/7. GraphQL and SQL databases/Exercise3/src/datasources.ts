@@ -18,14 +18,14 @@ const pool = new Pool({
 
 export class UserDataSource {
   async getUsers() {
-    const query = "SELECT * FROM User";
+    const query = "SELECT * FROM users";
     const { rows } = await pool.query(query);
     return rows;
   }
 
   async getUserByToken(token) {
     const query = {
-      text: "SELECT * FROM User WHERE token = $1",
+      text: "SELECT * FROM users WHERE token = $1",
       values: [token],
     };
 
@@ -35,7 +35,7 @@ export class UserDataSource {
 
   async login(email: string, password: string): Promise<LoginResponse> {
     const query = {
-      text: "SELECT * FROM User WHERE email = $1 AND hashed_password = $2",
+      text: "SELECT * FROM users WHERE email = $1 AND hashed_password = $2",
       values: [email, password],
     };
     const { rows } = await pool.query(query);
@@ -55,7 +55,7 @@ export class UserDataSource {
   async registerUser(user: User): Promise<RegisterUserMutationResponse> {
     const { name, email, hashedPassword, token } = user;
     const query = {
-      text: "INSERT INTO User(name, email, hashed_password, token) VALUES($1, $2, $3,  $4) RETURNING *",
+      text: "INSERT INTO users(name, email, hashed_password, token) VALUES($1, $2, $3,  $4) RETURNING *",
       values: [name, email, hashedPassword, token],
     };
     const { rows } = await pool.query(query);
@@ -64,7 +64,7 @@ export class UserDataSource {
 }
 export class BooksDataSource {
   async getBooks(): Promise<Book[]> {
-    const query = "SELECT * FROM Book";
+    const query = "SELECT * FROM books";
     const { rows } = await pool.query(query);
     return rows;
   }
@@ -72,7 +72,7 @@ export class BooksDataSource {
   async addBook(book: Book): Promise<AddBookMutationResponse> {
     const { title, author } = book;
     const query = {
-      text: "INSERT INTO Book(title, author) VALUES($1, $2) RETURNING *",
+      text: "INSERT INTO books(title, author) VALUES($1, $2) RETURNING *",
       values: [title, author],
     };
     const { rows } = await pool.query(query);
