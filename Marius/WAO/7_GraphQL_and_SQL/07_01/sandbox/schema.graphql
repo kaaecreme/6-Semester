@@ -1,5 +1,12 @@
 type Query {
   books: [Book]
+  login(username: String!, password: String!): LoginResponse
+  user(token: String!): User
+}
+
+type Mutation {
+  addBook(title: String, author: String): AddBookMutationResponse
+  addUser(username: String, password: String): AddUserMutationResponse
 }
 
 type Book {
@@ -14,14 +21,11 @@ type AddBookMutationResponse {
   book: Book
 }
 
-type Mutation {
-  addBook(title: String, author: String): AddBookMutationResponse
-}
-
 type User {
   id: ID
   username: String!
   password: String!
+  token: String!
 }
 
 type AddUserMutationResponse {
@@ -31,6 +35,9 @@ type AddUserMutationResponse {
   user: User
 }
 
-type Mutation {
-  addUser(username: String, password: String): AddUserMutationResponse
+type LoginResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  token: String
 }
