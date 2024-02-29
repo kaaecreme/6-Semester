@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { orderSchema } from "../src/order";
 
 const orderConnection = mongoose.createConnection(
-  "mongodb://root:example@localhost:27020"
+  "mongodb://root:example@localhost:rabbitmq/"
 );
 const OrderModel = orderConnection.model("Order", orderSchema);
 
