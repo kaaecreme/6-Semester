@@ -11,16 +11,16 @@ public class MockController: ControllerBase {
 	private readonly IHttpClientFactory _httpClientFactory;
 
 	public enum EndpointState {
-    Fail,
-    Ok,
-    Slow,
+	Fail,
+	Ok,
+	Slow,
   }
   public MockController(IHttpClientFactory httpClientFactory) => _httpClientFactory = httpClientFactory;
 
 [Route("success")]
   [HttpGet]
   public Task<StatusCodeResult> OnGetSuccess() {
-    return Task.FromResult(new StatusCodeResult(StatusCodes.Status200OK));
+	return Task.FromResult(new StatusCodeResult(StatusCodes.Status200OK));
   }
 
 	[HttpGet]
@@ -34,7 +34,7 @@ public class MockController: ControllerBase {
 				result = StatusCodes.Status500InternalServerError;
 				break;
 			case EndpointState.Ok:
-				result = StatusCodes.Status200OK;
+				result = StatusCodes.Status500InternalServerError;
 				break;
 			case EndpointState.Slow:
 				result = StatusCodes.Status408RequestTimeout;
