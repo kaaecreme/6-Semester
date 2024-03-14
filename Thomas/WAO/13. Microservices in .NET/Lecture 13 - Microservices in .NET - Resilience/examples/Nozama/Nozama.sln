@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nozama.ProductCatalog", "No
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nozama.Recommendations", "Nozama.Recommendations\Nozama.Recommendations.csproj", "{BE909EB5-69F2-4648-9A03-6733200CADAF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nozama.Model", "Nozama.Model\Nozama.Model.csproj", "{7CB08902-C940-436E-B6B5-030880C6E12D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BE909EB5-69F2-4648-9A03-6733200CADAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE909EB5-69F2-4648-9A03-6733200CADAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE909EB5-69F2-4648-9A03-6733200CADAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB08902-C940-436E-B6B5-030880C6E12D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB08902-C940-436E-B6B5-030880C6E12D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB08902-C940-436E-B6B5-030880C6E12D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB08902-C940-436E-B6B5-030880C6E12D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

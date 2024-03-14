@@ -24,7 +24,9 @@ public class StatsController : ControllerBase
       Products = new List<Product>(),
       Timestamp = DateTimeOffset.Now,
     });
-  }  [HttpPost]
+  }  
+    
+  [HttpPost]
   [ProducesResponseType(StatusCodes.Status201Created)]
   [ProducesResponseType(StatusCodes.Status400BadRequest)]
   public async Task<ActionResult<Recommendation>> Post(Recommendation recommendation)

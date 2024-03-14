@@ -13,4 +13,6 @@ public class ProductCatalogService
   }
 
   public async Task<IEnumerable<Recommendation>?> GetRecommendations() => await _httpClient.GetFromJsonAsync<IEnumerable<Recommendation>?>("/recommendation");
+
+	public async Task<Recommendation> GetStats() => await _httpClient.GetFromJsonAsync<Recommendation>("/stats");
 }
