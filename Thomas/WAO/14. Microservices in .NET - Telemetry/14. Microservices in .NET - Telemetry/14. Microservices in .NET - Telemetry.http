@@ -1,0 +1,6 @@
+@_14._Microservices_in_.NET___Telemetry_HostAddress = http://localhost:5085
+
+GET {{_14._Microservices_in_.NET___Telemetry_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
