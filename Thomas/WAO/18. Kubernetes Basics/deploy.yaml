@@ -1,18 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment 
+  name: app-deployment
+  namespace: app
   labels:
     app: app-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: app-pod   
+      app: app-pod
   template:
     metadata:
       labels:
-        app: app-pod   
+        app: app-pod
     spec:
       containers:
         - name: app

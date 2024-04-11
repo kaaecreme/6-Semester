@@ -2,17 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
-  namespace: app
+  namespace: kub2
 spec:
   ingressClassName: nginx
   rules:
     - host: mycluster.my # Specify the hostname
       http:
         paths:
-          - path: /hello # Specify the path
+          - path: /helloagain # Specify the path
             pathType: Prefix # Keep the path as-is
             backend:
               service:
                 name: app-service
                 port:
-                  number: 80 # Port exposed by the Service
+                  number: 3000 # Port exposed by the Service

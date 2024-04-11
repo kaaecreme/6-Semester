@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: kub2
+  labels:
+    app: app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-pod
+  template:
+    metadata:
+      labels:
+        app: app-pod
+    spec:
+      containers:
+        - name: app
+          image: registry.gitlab.au.dk/swwao/demo-projs/typescript-mongodb-crud:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MONGO_INITDB_ROOT_PASSWORD
+            - name: MONGODB_DBNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-config
+                  key: dbname
+            - name: MONGODB_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-config
+                  key: hostname
+            - name: REL_URL_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-config
+                  key: rel_url_path
+      imagePullSecrets:
+        - name: my-registry-credentials
