@@ -9,7 +9,7 @@ spec:
     - host: mycluster.my # Specify the hostname
       http:
         paths:
-          - path: /helloagain # Specify the path
+          - path: /api # Specify the path
             pathType: Prefix # Keep the path as-is
             backend:
               service:

@@ -4,6 +4,6 @@ metadata:
   name: mongodb-config
   namespace: kub2
 data:
-  hostname: app-service
+  hostname: mongo-service
   dbname: admin
   rel_url_path: /api
