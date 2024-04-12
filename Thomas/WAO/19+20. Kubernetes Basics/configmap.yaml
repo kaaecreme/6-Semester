@@ -4,6 +4,7 @@ metadata:
   name: mongodb-config
   namespace: kub2
 data:
-  hostname: mongo-service
+  #hostname: mongo-service # for Service
+  hostname: mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-1.mongo:27017 # for StatefulSet
   dbname: admin
   rel_url_path: /api
